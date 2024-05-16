@@ -1,8 +1,3 @@
-> [!IMPORTANT]
-> This project is part of the [DevOpsTheHardWay][DevOpsTheHardWay] course. Please [onboard the course][onboarding_tutorial] before starting. 
-> 
-> Before finishing this project, it's advisable to complete [any previous projects](https://github.com/alonitac/DevOpsTheHardWay?#studying-guide) if you haven't already done so.
-
 # Networking and Security Project  [![][autotest_badge]][autotest_workflow]
 
 ## Project goals
@@ -15,11 +10,12 @@ Finally, you'll create a simplified version of the TLS handshake process to expl
 
 ## Preliminaries
 
-1. Fork this repo (read [here][fork_github] how). 
-2. Clone your forked repository into a new PyCharm project (read [here][clone_pycharm] how).   
-3. This project involves working with networks and virtual machines in AWS. You must have access to an AWS account to complete the project.  
-   Note that you are responsible for the costs of any resources you create. You'll mainly pay for 2 running virtual machines with 8GB disk each. 
-   If you work properly, the [cost estimation](https://calculator.aws/#/estimate?id=85b2a1916c47a1ed8eaaa084046e53d43801cc49) is **2.96 USD**, assuming your instance are running for 8 hours a day for a whole month (the project can be completed in much less than a month. You can, and **must**, stop you instances at the end of usage to avoid additional charges). 
+1. Fork this repo by clicking **Fork** in the top-right corner of the page. 
+2. Clone your forked repository by:
+   ```bash
+   git clone https://github.com/<your-username>/<your-project-repo-name>
+   ```
+   Change `<your-username>` and `<your-project-repo-name>` according to your GitHub username and the name you gave to your fork. E.g. `git clone https://github.com/johndoe/NetworkingProject`.
 
 Let's get started...
 
@@ -577,13 +573,8 @@ As it's only an exercise, we may not approve your pull request (approval would l
 ## Good Luck
 
 
-[DevOpsTheHardWay]: https://github.com/alonitac/DevOpsTheHardWay
-[onboarding_tutorial]: https://github.com/alonitac/DevOpsTheHardWay/blob/main/tutorials/onboarding.md
-[BashProject]: https://github.com/alonitac/BashProject
 [autotest_badge]: ../../actions/workflows/project_auto_testing.yaml/badge.svg?event=push
 [autotest_workflow]: ../../actions/workflows/project_auto_testing.yaml/
-[fork_github]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository
-[clone_pycharm]: https://www.jetbrains.com/help/pycharm/set-up-a-git-repository.html#clone-repo
 [github_actions]: ../../actions
 [networking_project_stop]: https://alonitac.github.io/DevOpsTheHardWay/img/networking_project_stop.gif
 [networking_project_vpc1]: https://alonitac.github.io/DevOpsTheHardWay/img/networking_project_vpc1.png
