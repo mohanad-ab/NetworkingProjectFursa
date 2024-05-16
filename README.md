@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> This project is part of the [DevOpsTheHardWay][DevOpsTheHardWay] course. Please [onboard the course][onboarding_tutorial] before starting. 
+> 
+> Before finishing this project, it's advisable to complete [any previous projects](https://github.com/alonitac/DevOpsTheHardWay?#studying-guide) if you haven't already done so.
+
 # Networking and Security Project  [![][autotest_badge]][autotest_workflow]
 
 ## Project goals
@@ -10,12 +15,11 @@ Finally, you'll create a simplified version of the TLS handshake process to expl
 
 ## Preliminaries
 
-1. Fork this repo by clicking **Fork** in the top-right corner of the page. 
-2. Clone your forked repository by:
-   ```bash
-   git clone https://github.com/<your-username>/<your-project-repo-name>
-   ```
-   Change `<your-username>` and `<your-project-repo-name>` according to your GitHub username and the name you gave to your fork. E.g. `git clone https://github.com/johndoe/PolybotServicePython`.
+1. Fork this repo (read [here][fork_github] how). 
+2. Clone your forked repository into a new PyCharm project (read [here][clone_pycharm] how).   
+3. This project involves working with networks and virtual machines in AWS. You must have access to an AWS account to complete the project.  
+   Note that you are responsible for the costs of any resources you create. You'll mainly pay for 2 running virtual machines with 8GB disk each. 
+   If you work properly, the [cost estimation](https://calculator.aws/#/estimate?id=85b2a1916c47a1ed8eaaa084046e53d43801cc49) is **2.96 USD**, assuming your instance are running for 8 hours a day for a whole month (the project can be completed in much less than a month. You can, and **must**, stop you instances at the end of usage to avoid additional charges). 
 
 Let's get started...
 
@@ -201,11 +205,6 @@ Open the terminal in your local machine, and connect to your instance by:
 ssh -i "</path/key-pair-name.pem>" ubuntu@<instance-public-dns-name-or-ip>
 ```
 
-- Make sure your instance has public access to the internet.
-- Use `route -n` and the information under `/etc/resolv.conf` to determine the IP addresses of your **local DNS server**, and the **default gateway**. Copy the IPs into `SOLUTION` file in the appropriate place.
-- Search in `/var/log/syslog` logs that indicate the communication of the instance with the DHCP server (`grep` may be useful...). 
-  Specifically, find and indication for the 4 phases of DHCP IP allocation (DORA). Copy the relevant logs into `SOLUTION` file in the appropriate place. 
-
 ### Extending your VPC
 
 Extend your VPC according to the below architecture: 
@@ -219,6 +218,15 @@ Can you connect it from your local machine? no... it has no public IP, and it is
 
 Think how you can use the **public instance** to connect to the **private instance**.
 Once you’re in the private instance, try to access the internet and make sure you don’t have access.
+
+In addition, answer the below questions in `SOLUTION`:
+
+1. Use `route -n` and the information under `/etc/resolv.conf` to determine the IP addresses of your **local DNS server**, and the **default gateway**.
+2. Search in `/var/log/syslog` logs that indicate the communication of the instance with the DHCP server. 
+   Specifically, find and indication for the 4 phases of DHCP IP allocation (DORA). 
+3. Use `traceroute` to determine how many hops does a packet cross from the public instance to the private instance? Explain.
+4. Can you resolve DNS address of a public website from the private instance? Explain.
+
 
 ## Part II: SSH bastion host
 
@@ -305,6 +313,7 @@ ubuntu@<private-ip-host>: Permission denied (publickey).
 
 In any case that you break the private instance, feel free to delete your EC2 instance and create a new one instead.
 
+When done, copy your script content into the `ssh_keys_rotation.sh` file in this repo.
 
 ## Part IV: TLS Handshake 
 
@@ -555,11 +564,26 @@ Time to submit your solution for testing.
 
    **Note:** Your EC2 instances should be running while the automated test is performed. **Don't forget to turn off the machines when you're done**.
 
+### Share your project 
+
+You are highly encourages to share your project with others by creating a **Pull Request**.
+
+Create a Pull Request from your repo, branch `main` (e.g. `johndoe/NetworkingProject`) into our project repo (i.e. `alonitac/NetworkingProject`), branch `main`.  
+Feel free to explore other's pull requests to discover different solution approaches.
+
+As it's only an exercise, we may not approve your pull request (approval would lead your changes to be merged into our original project). 
+
+
 ## Good Luck
 
 
+[DevOpsTheHardWay]: https://github.com/alonitac/DevOpsTheHardWay
+[onboarding_tutorial]: https://github.com/alonitac/DevOpsTheHardWay/blob/main/tutorials/onboarding.md
+[BashProject]: https://github.com/alonitac/BashProject
 [autotest_badge]: ../../actions/workflows/project_auto_testing.yaml/badge.svg?event=push
 [autotest_workflow]: ../../actions/workflows/project_auto_testing.yaml/
+[fork_github]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository
+[clone_pycharm]: https://www.jetbrains.com/help/pycharm/set-up-a-git-repository.html#clone-repo
 [github_actions]: ../../actions
 [networking_project_stop]: https://alonitac.github.io/DevOpsTheHardWay/img/networking_project_stop.gif
 [networking_project_vpc1]: https://alonitac.github.io/DevOpsTheHardWay/img/networking_project_vpc1.png
