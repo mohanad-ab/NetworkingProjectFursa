@@ -560,15 +560,6 @@ Time to submit your solution for testing.
 
    **Note:** Your EC2 instances should be running while the automated test is performed. **Don't forget to turn off the machines when you're done**.
 
-### Share your project 
-
-You are highly encourages to share your project with others by creating a **Pull Request**.
-
-Create a Pull Request from your repo, branch `main` (e.g. `johndoe/NetworkingProject`) into our project repo (i.e. `alonitac/NetworkingProject`), branch `main`.  
-Feel free to explore other's pull requests to discover different solution approaches.
-
-As it's only an exercise, we may not approve your pull request (approval would lead your changes to be merged into our original project). 
-
 
 ## Good Luck
 
