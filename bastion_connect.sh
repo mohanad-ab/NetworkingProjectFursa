@@ -34,5 +34,8 @@ if [ $# -eq 3 ]; then
   exit $?
 fi
 
-# If none of the above conditions are met, exit with code 5
+
+
+
+# If none exit with code 5
 exit 5
