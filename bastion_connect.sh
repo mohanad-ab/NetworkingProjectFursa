@@ -30,6 +30,9 @@ fi
 
 KNOWN_HOSTS_FILE=$(mktemp)
 
+
+
+
 # If three arguments are provided, connect to the private instance throughthe public instance and execute the command
 if [ $# -eq 3 ]; then
   ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i key.pem ubuntu@$2 '$3'"
