@@ -19,7 +19,7 @@ if [ $# -eq 1 ]; then
     exit $?
 fi
 
-# If two arguments are provided, connect to the privat instanc through the public instance hello llllll
+# If two arguments are provided, connect to the privatee instanc through the public instance hello llllll
 if [ $# -eq 2 ]; then
 
     ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i key.pem ubuntu@$2"
