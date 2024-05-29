@@ -4,6 +4,8 @@
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <server-ip>"
     exit 1
+
+
 fi
 
 SERVER_IP=$1
