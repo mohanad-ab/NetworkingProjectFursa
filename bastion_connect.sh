@@ -7,9 +7,6 @@ if [ -z "$KEY_PATH" ]; then
 fi
 
 
-
-
-
 # Check the number of arguments passed
 if [ $# -lt 1 ]; then
     echo "Please provide bastion IP address"
