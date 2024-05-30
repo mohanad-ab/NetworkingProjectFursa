@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Check if KEY_PATH environmentariable is set
+# Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
-    echo "KEY_PATH env var is expected"
+    echo "KEY_PATH environment variable is expected"
     exit 5
 fi
 
+# Ensure the private key has the correct permissions
+chmod 600 "$KEY_PATH"
 
 # Check the number of arguments passed
 if [ $# -lt 1 ]; then
@@ -13,35 +15,27 @@ if [ $# -lt 1 ]; then
     exit 5
 fi
 
-
-
-# If only one argument is  provided,connect to the public instance
+# Handle one argument (connect to the public instance)
 if [ $# -eq 1 ]; then
-    echo " i am in the one arguments case"
+    echo "Connecting directly to the public instance..."
     ssh -i "$KEY_PATH" ubuntu@"$1"
     exit $?
 fi
 
-# If two arguments are provided, connect to the stanc through the public instance hello llllll
+# Handle two arguments (connect to the private instance through the public instance)
 if [ $# -eq 2 ]; then
-
-    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i key.pem ubuntu@$2"
+    echo "Connecting to the private instance through the public instance..."
+    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $KEY_PATH ubuntu@$2"
     exit $?
 fi
 
-KNOWN_HOSTS_FILE=$(mktemp)
-
-
-
-
-# If three arguments are provided, connect to the private instance throughthe public instance and execute the command
+# Handle three arguments (connect to the private instance through the public instance and execute a command)
 if [ $# -eq 3 ]; then
-  ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i key.pem ubuntu@$2 '$3'"
-  exit $?
+    echo "Connecting to the private instance through the public instance and executing a command..."
+    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $KEY_PATH ubuntu@$2 '$3'"
+    exit $?
 fi
 
-
-
-
-# If none exit with code 5
+# If none of the conditions are met, exit with code 5
+echo "Invalid number of arguments provided"
 exit 5
