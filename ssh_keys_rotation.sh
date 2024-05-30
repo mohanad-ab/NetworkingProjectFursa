@@ -19,6 +19,8 @@ ssh -i ~/key.pem ubuntu@$PRIVATE_INSTANCE_IP "cat ~/new_key.pub > ~/.ssh/authori
 
 cat ~/new_key > ~/key.pem
 
+
+
 rm ~/new_key
 
 rm ~/new_key.pub
