@@ -25,4 +25,3 @@ rm ~/new_key.pub
 
 # Remove the new public key file from the public instance
 
-#echo "SSH key rotation attempted. Please verify the connection manually."
