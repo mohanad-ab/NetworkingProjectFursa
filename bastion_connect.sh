@@ -1,4 +1,5 @@
 #!/bin/bash
+SECOND_KEY="/home/ubuntu/key.pem"
 
 # Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
@@ -22,17 +23,24 @@ if [ $# -eq 1 ]; then
     exit $?
 fi
 
+if ! ssh -i "$KEY_PATH" ubuntu@"$1" "test -f $SECOND_KEY"; then
+    echo "No key in public instance"
+    exit 1
+fi
+
 # Handle two arguments (connect to the private instance through the public instance)
 if [ $# -eq 2 ]; then
+
+
     echo "Connecting to the private instance through the public instance..."
-    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $KEY_PATH ubuntu@$2"
+    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $SECOND_KEY ubuntu@$2"
     exit $?
 fi
 
 # Handle three arguments (connect to the private instance through the public instance and execute a command)
 if [ $# -eq 3 ]; then
     echo "Connecting to the private instance through the public instance and executing a command..."
-    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $KEY_PATH ubuntu@$2 '$3'"
+    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $SECOND_KEY ubuntu@$2 '$3'"
     exit $?
 fi
 
