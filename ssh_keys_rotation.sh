@@ -1,28 +1,20 @@
 #!/bin/bash
 
-# Check if a private instance IP address is provided as an argument
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <private-instance-ip>"
-    exit 1
+if [ -z "$1" ]; then
+echo "Please provide the private instance IP address"
+exit 1
 fi
 
 PRIVATE_INSTANCE_IP=$1
+KEY_PATH=${KEY_PATH:-~/key.pem}
+NEW_KEY=~/new_key
+NEW_KEY_PUB=~/new_key.pub
 
-# Generate a new SSH key pair
-ssh-keygen -t rsa -b 2048 -f ~/new_key -q -N ""
+ssh-keygen -t rsa -b 2048 -f $NEW_KEY -q -N ""
 
-ssh -i ~/key.pem ubuntu@"$PRIVATE_KEY_IP" >> "cat ~/new_key.pub >> ~/.ssh/authorized_keys"
+EXTRACTED_PUB=$(cat $NEW_KEY_PUB)
 
-# Override the new public key to the authozed_keys file on the private instance
-ssh -i ~/new_key.pem ubuntu@$PRIVATE_INSTANCE_IP "cat ~/new_key.pub > ~/.ssh/authorized_keys && cat ~/.ssh/authorized_keys"
+ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_INSTANCE_IP" "echo '$EXTRACTED_PUB' > ~/.ssh/authorized_keys"
 
-mv ~/new_key > ~/key.pem
-
-
-
-#rm ~/new_key
-
-rm ~/new_key.pub
-
-# Remove the new public key file from the public instance
-
+mv $NEW_KEY $KEY_PATH
+rm $NEW_KEY_PUB
