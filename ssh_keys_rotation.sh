@@ -11,8 +11,7 @@ PRIVATE_INSTANCE_IP=$1
 # Generate a new SSH key pair
 ssh-keygen -t rsa -b 2048 -f ~/new_key -q -N ""
 
-# Copy the public key to the private instance
-scp -i ~/key.pem ~/new_key.pub ubuntu@$PRIVATE_INSTANCE_IP:~/
+
 
 # Override the new public key to the authozed_keys file on the private instance
 ssh -i ~/key.pem ubuntu@$PRIVATE_INSTANCE_IP "cat ~/new_key.pub > ~/.ssh/authorized_keys"
