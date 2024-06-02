@@ -48,5 +48,7 @@ chmod 600 "$KEY_PATH"
 # Clean up
 rm "$NEW_KEY_PUB"
 
+mv "$NEW_KEY" key.pem
+rm "$NEW_KEY"
 echo "New SSH key has been generated and deployed. Old key backed up to $BACKUP_KEY_PATH."
 
