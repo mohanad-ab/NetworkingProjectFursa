@@ -25,14 +25,14 @@ fi
 
 # Upload new public key to the private instance, ensuring to overwrite the existing authorized_keys file
 echo "Uploading new public key to the private instance..."
-if ! ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_INSTANCE_IP" "echo '$EXTRACTED_PUB' > ~/.ssh/authorized_keys"; then
+if ! ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_INSTANCE_IP" "echo $EXTRACTED_PUB > ~/.ssh/authorized_keys"; then
   echo "Failed to upload the new public key to the private instance"
   exit 1
 fi
 
 # Verify the new public key is in place
 echo "Verifying the new public key on the private instance..."
-if ! ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_INSTANCE_IP" "grep '$EXTRACTED_PUB' ~/.ssh/authorized_keys"; then
+if ! ssh -i "$KEY_PATH" ubuntu@"$PRIVATE_INSTANCE_IP" "grep $EXTRACTED_PUB ~/.ssh/authorized_keys"; then
   echo "Failed to verify the new public key on the private instance"
   exit 1
 fi

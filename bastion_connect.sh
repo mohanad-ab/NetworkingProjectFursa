@@ -40,7 +40,7 @@ fi
 # Handle three arguments (connect to the private instance through the public instance and execute a command)
 if [ $# -eq 3 ]; then
     echo "Connecting to the private instance through the public instance and executing a command..."
-    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $SECOND_KEY ubuntu@$2 '$3'"
+    ssh -i "$KEY_PATH" ubuntu@"$1" "ssh -i $SECOND_KEY ubuntu@$2 $3"
     exit $?
 fi
 
